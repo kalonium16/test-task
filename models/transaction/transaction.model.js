@@ -1,7 +1,7 @@
 const transactionData = require('./transaction.mongo');
 
 async function getUserTotalSpend(userId){
-    let userTransactions = await transactionData.find({user:userId,destination:"lead_buy"}).select("amount");
+    let userTransactions = await transactionData.find({user:userId,destination:"lead_buy",balance_type: "credit"}).select("amount");
     let totalSpend = userTransactions.reduce((acc, curr) => {
         return acc + curr.amount;
     },0)
@@ -10,7 +10,7 @@ async function getUserTotalSpend(userId){
 };
 
 async function getUserTotalRefund(userId){
-    let userTransactions = await transactionData.find({user:userId,destination:"order_refund"}).select("amount");
+    let userTransactions = await transactionData.find({user:userId,destination:"order_refund",balance_type: "credit"}).select("amount");
     let totalRefund = userTransactions.reduce((acc, curr) => {
             return acc + curr.amount;
         },0)
