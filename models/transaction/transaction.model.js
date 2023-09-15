@@ -10,7 +10,7 @@ async function getUserTotalSpend(userId){
 };
 
 async function getUserTotalRefund(userId){
-    let userTransactions = await transactionData.find({user:userId,destination:"order_refund",balance_type: "credit"}).select("amount");
+    let userTransactions = await transactionData.find({user:userId,destination:"order_refund"}).select("amount");
     let totalRefund = userTransactions.reduce((acc, curr) => {
             return acc + curr.amount;
         },0)

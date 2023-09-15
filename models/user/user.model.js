@@ -4,9 +4,13 @@ const ITEMS_PER_PAGE = 10;
 
 async function getUsers(page, amount) {
     let itemsOnPage = amount ? amount : ITEMS_PER_PAGE;
-    let users = await userData.paginate(page, itemsOnPage);
+    const options = {
+        page: page,
+        limit: itemsOnPage,
+      };
+    let users = await userData.paginate({},options);
     let response = [];
-    response = await setUpResponseData(itemsOnPage, users);
+    response = await setUpResponseData(itemsOnPage, users.docs);
     return response;
 
 }
