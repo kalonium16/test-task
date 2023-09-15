@@ -17,6 +17,7 @@ async function getUserTotalRefund(userId){
     return totalRefund;
 };
 
+
 module.exports = {
     getUserTotalSpend,
     getUserTotalRefund
